@@ -4,16 +4,21 @@ FROM ubuntu:22.04
 ARG USER
 
 # Install required applications for the script to run
-RUN apt-get update -y && apt-get -y install python3-pip curl wget passwd sudo git
+RUN apt-get update -y && apt-get -y install python3-pip curl wget passwd sudo git nano
+
+#viur-cli
+RUN pip3 install viur-cli
 
 # pipenv
 RUN pip3 install pipenv
 RUN apt-get install -y zlib1g-dev bzip2-doc libbz2-dev libncurses-dev libncursesw5-dev
 
 # Für libreadline-dev benötigte Packages
-RUN apt-get install -y binfmt-support icu-devtools libclang-cpp14 libedit2 libffi-dev libicu-dev libicu70 libllvm14 \
-    libpfm4 libpipeline1 libxml2 libxml2-dev libyaml-0-2 libz3-4 libz3-dev llvm-14 llvm-14-dev llvm-14-linker-tools  \
-    llvm-14-runtime llvm-14-tools llvm-runtime python3-pygments python3-yaml install libreadline-dev install \
+RUN apt-get install -y binfmt-support
+RUN apt-get install -y icu-devtools libclang-cpp14 libedit2 libffi-dev libicu-dev libicu70 libllvm14 \
+    libpfm4 libpipeline1 libxml2 libxml2-dev libyaml-0-2 libz3-4
+RUN apt-get install -y libz3-dev llvm-14 llvm-14-dev llvm-14-linker-tools  \
+    llvm-14-runtime llvm-14-tools llvm-runtime python3-pygments python3-yaml libreadline-dev \
     libsqlite3-dev llvm
 
 # weird Bunch of sub-sub-sub dependencys, this is an Artifact from development
@@ -47,9 +52,11 @@ RUN n latest
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 # GCLoud Installement
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
+    | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN apt-get install -y apt-transport-https ca-certificates gnupg
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+    | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
 RUN apt-get update && apt-get install -y google-cloud-sdk
 RUN apt-get install -y google-cloud-sdk-app-engine-python \

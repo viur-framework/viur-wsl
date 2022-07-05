@@ -134,7 +134,6 @@ export MAVEN_HOME=/opt/apache-maven-3.5.4
 export PATH=${M2_HOME}/bin:${PATH}
 #pipenv
 export PATH=$HOME/.local/bin:$PATH
-
 #pyenv
 export PATH=$HOME/.pyenv/bin:$PATH
 eval "$(pyenv init -)"
@@ -142,6 +141,11 @@ eval "$(pyenv virtualenv-init -)"
 
 
 echo "Welcome to your Viur Development Enviroment"
-echo "To Complete your setup run:"
+echo "To Complete your setup :"
 echo "1. gcloud init --no-launch-browser"
 echo "2. gcloud auth application-default login --no-launch-browser"
+echo "3. Set up an SSH Key"
+echo "   https://linuxize.com/post/how-to-set-up-ssh-keys-on-ubuntu-20-04/ "
+
+echo "4. Start a viur-base Project by running:"
+echo "   viur create [NAME] "
