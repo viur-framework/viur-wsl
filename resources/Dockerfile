@@ -42,6 +42,8 @@ RUN apt-get update -qq && \
 
 RUN apt-get install -y tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
+RUN sed -i 's/\r$//' ./resources/bashrc
+
 # Add default .bashrc for new user
 COPY --chown=$USER:root ./resources/bashrc /root/.bashrc
 
@@ -80,4 +82,5 @@ RUN /bin/bash -c 'echo "default=${USER}" >> /etc/wsl.conf; echo "${USER} ALL=(AL
 USER $USER
 RUN cd ~
 RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
 
