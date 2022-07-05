@@ -73,7 +73,7 @@ RUN /bin/bash -c "chown -cR ${USER}:root /home/${USER}"
 
 # Add wsl settings to change mount point and default user
 COPY ./resources/wsl.conf /etc/wsl.conf
-COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
+COPY --chown=$USER:root ./resources/bashrc /root/.bashrc
 RUN /bin/bash -c 'echo "default=${USER}" >> /etc/wsl.conf; echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers;'
 
 # Set the default user
