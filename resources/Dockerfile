@@ -13,8 +13,7 @@ RUN apt-get install -y zlib1g-dev bzip2-doc libbz2-dev libncurses-dev libncurses
 # Für libreadline-dev benötigte Packages
 RUN apt-get install -y binfmt-support icu-devtools libclang-cpp14 libedit2 libffi-dev libicu-dev libicu70 libllvm14 \
     libpfm4 libpipeline1 libxml2 libxml2-dev libyaml-0-2 libz3-4 libz3-dev llvm-14 llvm-14-dev llvm-14-linker-tools  \
-    llvm-14-runtime llvm-14-tools llvm-runtime python3-pygments python3-yaml install libreadline-dev install \
-    libsqlite3-dev llvm
+    llvm-14-runtime llvm-14-tools llvm-runtime python3-pygments python3-yaml libreadline-dev libsqlite3-dev llvm
 
 # weird Bunch of sub-sub-sub dependencys, this is an Artifact from development
 RUN apt-get install -y libbrotli-dev libdrm-amdgpu1 libdrm-common libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 \
