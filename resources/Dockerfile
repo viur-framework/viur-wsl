@@ -38,7 +38,7 @@ RUN apt-get update -qq && \
 RUN apt-get install -y tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 # Add default .bashrc for new user
-COPY --chown=$USER:root ./bashrc /home/${USER}/.bashrc
+COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
 
 # NODE + npm + npm
 RUN apt-get install -y nodejs npm
@@ -66,7 +66,7 @@ RUN /bin/bash -c "chown -cR ${USER}:root /home/${USER}"
 
 # Add wsl settings to change mount point and default user
 COPY ./wsl.conf /etc/wsl.conf
-COPY --chown=$USER:root ./bashrc /home/${USER}/.bashrc
+COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
 RUN /bin/bash -c 'echo "default=${USER}" >> /etc/wsl.conf; echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers;'
 
 # Set the default user
