@@ -43,7 +43,7 @@ RUN apt-get update -qq && \
 RUN apt-get install -y tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 # Add default .bashrc for new user
-# COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
+COPY --chown=$USER:root ./resources/bashrc /root/.bashrc
 
 # NODE + npm + npm
 RUN apt-get install -y nodejs npm
@@ -80,3 +80,4 @@ RUN /bin/bash -c 'echo "default=${USER}" >> /etc/wsl.conf; echo "${USER} ALL=(AL
 USER $USER
 RUN cd ~
 RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
