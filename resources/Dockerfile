@@ -4,10 +4,10 @@ FROM ubuntu:22.04
 ARG USER
 
 # Install required applications for the script to run
-RUN apt-get update -y && apt-get -y install python3-pip curl wget passwd sudo git
+RUN apt-get update -y && apt-get -y install python3-pip curl wget passwd sudo git nano
 
 # pipenv
-RUN pip3 install pipenv
+RUN pip3 install pipenv viur-cli
 RUN apt-get install -y zlib1g-dev bzip2-doc libbz2-dev libncurses-dev libncursesw5-dev
 
 # Für libreadline-dev benötigte Packages
@@ -36,8 +36,10 @@ RUN apt-get update -qq && \
 
 RUN apt-get install -y tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
+
+
 # Add default .bashrc for new user
-COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
+# COPY --chown=$USER:root ./resources/bashrc /~/${USER}/.bashrc
 
 # NODE + npm + npm
 RUN apt-get install -y nodejs npm
@@ -59,16 +61,32 @@ RUN apt-get install -y google-cloud-sdk-app-engine-python \
 RUN cd ~
 RUN apt-get install -y make build-essential libssl3 libssl-dev xz-utils
 
+
+RUN cd ~
+RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
+RUN echo 'export PATH=$HOME/.pyenv/bin:$PATH' >> .bashrc
+RUN echo 'eval "$(pyenv init -)"' >> .bashrc
+RUN echo 'eval "$(pyenv virtualenv-init -)"' >> .bashrc
+
 # Add current user to environment
 RUN /bin/bash -c 'useradd -m -s /bin/bash -g root ${USER}; echo "${USER}:PassW0rd" | chpasswd'
 RUN /bin/bash -c "chown -cR ${USER}:root /home/${USER}"
 
 # Add wsl settings to change mount point and default user
 COPY ./resources/wsl.conf /etc/wsl.conf
-COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
-RUN /bin/bash -c 'echo "default=${USER}" >> /etc/wsl.conf; echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers;'
+RUN /bin/bash -c 'echo "default=${USER}" >> /etc/wsl.conf; \
+    echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers;'
+
+
+#Copy the default .bashrc to root
+COPY ./resources/bashrc /root/.bashrc
+RUN apt-get install -y dos2unix
+RUN dos2unix /root/.bashrc
+
 
 # Set the default user
 USER $USER
-RUN cd ~
-RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
+
+
