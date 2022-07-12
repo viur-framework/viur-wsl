@@ -1,6 +1,6 @@
 # First things First
 
-Viur-Flint is a Fork of n-murray (https://github.com/n-murray/) great repository that generates an UBUNTU WSL2 Distribution.
+viur-wsl-auto-setup is a Fork of n-murray (https://github.com/n-murray/) great repository that generates an UBUNTU WSL2 Distribution.
 The Fork Adapts to the requirements a ViUR-Developer will face when starting developing with the ViUR Framework.
 If you dont use ViUR and still want to Autogenerate a WSL2 Distro, Check out https://github.com/n-murray/wsl-automated-setup.
 

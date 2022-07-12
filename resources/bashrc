@@ -130,6 +130,23 @@ fi
 # pipenv
 export PATH=$HOME/.local/bin:$PATH
 
+echo " _   _ _"
+echo "| | | (_)"
+echo "| | | |_ _   _ _ __"
+echo "| | | | | | | | '__|"
+echo "\ \_/ / | |_| | |"
+echo "_\___/|_|\__,_|_|"
+echo "|  _ "'\'
+echo "| | | |_____   __"
+echo "| | | / _ \ \ / /"
+echo "| |/ /  __/\ V / "
+echo "|___/_\___| \_/  "
+echo "|  ___|"
+echo '/ /'"__ _ ____   __"
+echo "|  __| '_ \ \ / /"
+echo "| |__| | | \ V / "
+echo "\____/_| |_|\_/  "
+
 echo "Welcome to your Development Enviroment"
 echo "To Complete your setup run:"
 
