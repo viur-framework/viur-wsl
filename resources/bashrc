@@ -128,18 +128,13 @@ if ! echo $wsl_ver | grep -iqF wsl2; then
     export DOCKER_HOST=tcp://localhost:2375
 fi
 
-# Setting the maven home and PATH variables
-export M2_HOME=/opt/apache-maven-3.5.4
-export MAVEN_HOME=/opt/apache-maven-3.5.4
-export PATH=${M2_HOME}/bin:${PATH}
-#pipenv
+# pipenv
 export PATH=$HOME/.local/bin:$PATH
 
-#pyenv
-export PATH=$HOME/.pyenv/bin:$PATH
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
+# pyenv
+# export PATH=$HOME/.pyenv/bin:$PATH
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 echo "Welcome to your Development Enviroment"
 echo "To Complete your setup run:"

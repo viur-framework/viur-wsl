@@ -36,11 +36,6 @@ RUN apt-get update -qq && \
 
 RUN apt-get install -y tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
-
-
-# Add default .bashrc for new user
-# COPY --chown=$USER:root ./resources/bashrc /~/${USER}/.bashrc
-
 # NODE + npm + npm
 RUN apt-get install -y nodejs npm
 RUN npm install -g n
@@ -60,11 +55,7 @@ RUN apt-get install -y google-cloud-sdk-app-engine-python \
 # Pyenv
 RUN cd ~
 RUN apt-get install -y make build-essential libssl3 libssl-dev xz-utils
-
-
-RUN cd ~
 RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-
 RUN echo 'export PATH=$HOME/.pyenv/bin:$PATH' >> .bashrc
 RUN echo 'eval "$(pyenv init -)"' >> .bashrc
 RUN echo 'eval "$(pyenv virtualenv-init -)"' >> .bashrc
@@ -78,7 +69,6 @@ COPY ./resources/wsl.conf /etc/wsl.conf
 RUN /bin/bash -c 'echo "default=${USER}" >> /etc/wsl.conf; \
     echo "${USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers;'
 
-
 #Copy the default .bashrc to root
 COPY ./resources/bashrc /root/.bashrc
 RUN apt-get install -y dos2unix
@@ -88,5 +78,3 @@ RUN dos2unix /root/.bashrc
 # Set the default user
 USER $USER
 COPY --chown=$USER:root ./resources/bashrc /home/${USER}/.bashrc
-
-
