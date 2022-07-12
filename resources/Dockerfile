@@ -4,10 +4,12 @@ FROM ubuntu:22.04
 ARG USER
 
 # Install required applications for the script to run
-RUN apt-get update -y && apt-get -y install python3-pip curl wget passwd sudo git nano viur-cli
+RUN apt-get update -y && apt-get -y install python3-pip curl wget passwd sudo git nano 
 
+# viur-cli
+RUN pip3 install viur-cli
 # pipenv
-RUN pip3 install pipenv viur-cli
+RUN pip3 install pipenv
 RUN apt-get install -y zlib1g-dev bzip2-doc libbz2-dev libncurses-dev libncursesw5-dev
 
 # Für libreadline-dev benötigte Packages
