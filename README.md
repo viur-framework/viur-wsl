@@ -76,7 +76,7 @@ ___
 ***Windows 11***  
 > For Windows 11 you can install WSL from the Microsoft Store. Currently in preview here: https://www.microsoft.com/store/productId/9P9TQF7MRM4R
 ___
-### WSL installement
+### WSL Distribution installement
 You can navigate to the automated-setup directory in your PowerShell Terminal. 
 To initiate the installement of viur-env run:
 
