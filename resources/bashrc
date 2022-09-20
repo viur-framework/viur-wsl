@@ -129,6 +129,10 @@ if ! echo $wsl_ver | grep -iqF wsl2; then
 fi
 # pipenv
 export PATH=$HOME/.local/bin:$PATH
+echo 'export PATH=$HOME/.pyenv/bin:$PATH' >> .bashrc
+echo 'eval "$(pyenv init -)"' >> .bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> .bashrc
+
 
 echo " _   _ _"
 echo "| | | (_)"
